@@ -1,0 +1,11 @@
+AllCops:
+  TargetRubyVersion: 2.1
+
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

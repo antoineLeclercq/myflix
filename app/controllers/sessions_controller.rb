@@ -12,12 +12,13 @@ class SessionsController < ApplicationController
       redirect_to home_path
     else
       flash[:danger] = 'Incorrect password or email.'
-      redirect_to :back
+      redirect_to sign_in_path
     end
   end
 
   def destroy
-    reset_session
+    session[:user_id] = nil
+    flash[:info] = 'You have been logged out.'
     redirect_to root_path
   end
 end

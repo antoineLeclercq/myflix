@@ -1,5 +1,6 @@
 class Video < ActiveRecord::Base
   belongs_to :category
+  has_many :reviews
 
   validates :title, presence: true
   validates :description, presence: true
@@ -7,5 +8,10 @@ class Video < ActiveRecord::Base
   def self.search_by_title(search_term)
     return [] if search_term.blank?
     where(['LOWER(title) LIKE ?', "%#{search_term.downcase}%"]).order(created_at: :desc)
+  end
+
+  def average_rating
+    return 'No ratings' unless reviews.any?
+    (reviews.pluck(:rating).reduce(:+).to_f / reviews.size).round(1)
   end
 end

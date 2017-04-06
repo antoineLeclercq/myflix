@@ -4,7 +4,7 @@
       = link_to "MyFLiX", home_path, class: 'navbar-brand'
     - if logged_in?
       %ul.nav.navbar-nav
-        %li= link_to "Videos"
+        %li= link_to "Videos", home_path
         %li= link_to "My Queue", my_queue_path
         %li= link_to "People"
       = form_tag search_videos_path, method: 'get', class: 'navbar-form navbar-left' do

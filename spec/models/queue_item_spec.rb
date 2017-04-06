@@ -42,4 +42,6 @@ describe QueueItem do
       expect(queue_item.category).to eq(video.category)
     end
   end
+
+  # set position automatically
 end

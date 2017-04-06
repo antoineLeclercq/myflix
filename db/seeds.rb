@@ -1,15 +1,15 @@
 Video.create(
-  title: 'Monk',
-  description: 'Monk is an American comedy-drama detective mystery television series created by Andy Breckman and starring Tony Shalhoub as the eponymous character, Adrian Monk.',
-  cover_url_small: '/tmp/monk.jpg',
-  cover_url_large: '/tmp/monk_large.jpg',
-  category_id: 1
-)
-Video.create(
   title: 'Friends',
   description: 'Friends is an American situation comedy about a group of friends living in the New York City borough of Manhattan. It was created by David Crane and Marta Kauffman, which premiered on NBC on September 22, 1994. The series was produced by Bright/Kauffman/Crane Productions, in association with Warner Bros. Television.',
   cover_url_small: '/tmp/friends.jpg',
   cover_url_large: '/tmp/friends_large.png',
+  category_id: 1
+)
+Video.create(
+  title: 'Monk',
+  description: 'Monk is an American comedy-drama detective mystery television series created by Andy Breckman and starring Tony Shalhoub as the eponymous character, Adrian Monk.',
+  cover_url_small: '/tmp/monk.jpg',
+  cover_url_large: '/tmp/monk_large.jpg',
   category_id: 1
 )
 Video.create(
@@ -113,3 +113,9 @@ Video.create(
 
 Category.create(name: 'TV Comedies')
 Category.create(name: 'Movies')
+
+User.create(email: 'email@example.com', full_name: 'Net Flix', password: 'password')
+User.create(email: 'antoine@example.com', full_name: 'Antoine Leclercq', password: 'antoine')
+
+Review.create(rating: 4, body: 'This TV show is awesome!', video: Video.first, creator: User.first)
+Review.create(rating: 5, body: 'I love this TV show!', video: Video.first, creator: User.second)

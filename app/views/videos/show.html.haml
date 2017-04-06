@@ -6,8 +6,34 @@
       .video_info.col-sm-3
         %header
           %h3= @video.title
-          %span Rating: 4.5/5.0
+          %span Rating: #{@video.average_rating}
+          = '/5.0' if @video.average_rating.is_a? Float
         %p= @video.description
         .actions
           %a.btn.btn-primary(href="") Watch Now
           %a.btn.btn-default(href="") + My Queue
+
+%section.reviews.container
+  .row
+    .col-sm-10.col-sm-offset-1
+      = bootstrap_form_for [@video, @review] do |f|
+        .row
+          .col-sm-3
+            = f.select :rating, [['1 Star', 1], ['2 Stars', 2], ['3 Stars', 3], ['4 Stars', 4], ['5 Stars', 5]], label: 'Rate this video'
+        .row
+          .col-sm-8
+            = f.text_area :body, label: 'Write Review', rows: 6
+        = f.form_group do
+          = f.submit 'Submit Review', class: 'btn btn-primary'
+
+      %header
+        %h3 User Reviews (#{@video.reviews.size})
+      %ul
+        - @video.reviews.each do |review|
+          %article.review
+            %li.row
+              .col-sm-2
+                %span Rating: #{review.rating} / 5
+                %p by <a href="">#{review.creator.full_name}</a>
+              .col-sm-8
+                %p #{review.body}

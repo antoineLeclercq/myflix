@@ -4,10 +4,14 @@ describe VideosController do
   describe 'GET show' do
     let(:video) { Fabricate(:video) }
 
-    it 'sets @video for authenticated users' do
-      session[:user_id] = Fabricate(:user).id
-      get :show, id: video
-      expect(assigns(:video)).to eq(video)
+    context 'with authenticated users' do
+      before do
+        session[:user_id] = Fabricate(:user).id
+        get :show, id: video.id
+      end
+
+      it { expect(assigns(:video)).to eq(video) }
+      it { expect(assigns(:review)).to be_instance_of(Review) }
     end
 
     it 'redirects to sign in page for unauthenticated users' do

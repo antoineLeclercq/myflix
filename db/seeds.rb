@@ -114,8 +114,8 @@ Video.create(
 Category.create(name: 'TV Comedies')
 Category.create(name: 'Movies')
 
-User.create(email: 'email@example.com', full_name: 'Net Flix', password: 'password')
 User.create(email: 'antoine@example.com', full_name: 'Antoine Leclercq', password: 'antoine')
+User.create(email: 'email@example.com', full_name: 'Net Flix', password: 'password')
 
 Review.create(rating: 4, body: 'This TV show is awesome!', video: Video.first, creator: User.first)
 Review.create(rating: 5, body: 'I love this TV show!', video: Video.first, creator: User.second)

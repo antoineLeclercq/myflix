@@ -19,7 +19,7 @@
       = bootstrap_form_for [@video, @review] do |f|
         .row
           .col-sm-3
-            = f.select :rating, [['1 Star', 1], ['2 Stars', 2], ['3 Stars', 3], ['4 Stars', 4], ['5 Stars', 5]], label: 'Rate this video'
+            = f.select :rating, options_for_video_ratings, label: 'Rate this video'
         .row
           .col-sm-8
             = f.text_area :body, label: 'Write Review', rows: 6

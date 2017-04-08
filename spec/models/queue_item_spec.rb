@@ -5,6 +5,8 @@ describe QueueItem do
   it { should belong_to(:video) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:video) }
+  it { should validate_presence_of(:position) }
+  it { should validate_numericality_of(:position).only_integer.is_greater_than(0) }
 
   let(:user) { Fabricate(:user) }
   let(:video) { Fabricate(:video) }
@@ -43,5 +45,31 @@ describe QueueItem do
     end
   end
 
-  # set position automatically
+  describe '#rating=' do
+    context 'with existing review' do
+      it 'updates the rating' do
+        review = Fabricate(:review, rating: 4, creator: user, video: video)
+        queue_item.rating = 5
+        expect(queue_item.rating).to eq(5)
+      end
+
+      it 'clears the rating of the review if the rating is blank' do
+        review = Fabricate(:review, rating: 4, creator: user, video: video)
+        queue_item.rating = ''
+        expect(queue_item.rating).to be_nil
+      end
+    end
+
+    context 'without existing review' do
+      it 'does not create a review if the rating is blank' do
+        queue_item.rating = ''
+        expect(queue_item.rating).to be_nil
+      end
+
+      it 'creates new review with the rating' do
+        queue_item.rating = 4
+        expect(queue_item.rating).to eq(4)
+      end
+    end
+  end
 end

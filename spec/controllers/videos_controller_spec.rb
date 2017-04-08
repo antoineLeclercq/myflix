@@ -1,22 +1,24 @@
 require 'rails_helper'
 
 describe VideosController do
+  before { set_current_user }
+
   describe 'GET show' do
     let(:video) { Fabricate(:video) }
 
-    context 'with authenticated users' do
-      before do
-        session[:user_id] = Fabricate(:user).id
-        get :show, id: video.id
-      end
-
-      it { expect(assigns(:video)).to eq(video) }
-      it { expect(assigns(:review)).to be_instance_of(Review) }
+    it 'sets @video' do
+      get :show, id: video.id
+      expect(assigns(:video)).to eq(video)
     end
 
-    it 'redirects to sign in page for unauthenticated users' do
-      get :show, id: video
-      expect(response).to redirect_to(sign_in_path)
+    it 'sets @review as new record' do
+      get :show, id: video.id
+      expect(assigns(:review)).to be_instance_of(Review)
+      expect(assigns(:review)).to be_new_record
+    end
+
+    it_behaves_like 'requires sign in' do
+      let(:action) { get :show, id: video }
     end
   end
 
@@ -24,15 +26,12 @@ describe VideosController do
     let(:video) { Fabricate(:video, title: 'Inception') }
 
     it 'sets @videos for authenticated users' do
-      session[:user_id] = Fabricate(:user).id
-      video
       get :search, search_term: 'Ince'
       expect(assigns(:videos)).to eq([video])
     end
 
-    it 'redirects to sign in page for unauthenticated users' do
-      get :search
-      expect(response).to redirect_to(sign_in_path)
+    it_behaves_like 'requires sign in' do
+      let(:action) { get :search }
     end
   end
 end

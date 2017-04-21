@@ -29,11 +29,4 @@
       %header
         %h3 User Reviews (#{@video.reviews.size})
       %ul
-        - @video.reviews.each do |review|
-          %article.review
-            %li.row
-              .col-sm-2
-                %span Rating: #{review.rating} / 5
-                %p by <a href="">#{review.creator.full_name}</a>
-              .col-sm-8
-                %p #{review.body}
+        = render @video.reviews, with_creator: true

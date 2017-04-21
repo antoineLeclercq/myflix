@@ -52,4 +52,20 @@ describe UsersController do
       expect(response).to redirect_to(home_path)
     end
   end
+
+  describe 'GET show' do
+    let(:user) { Fabricate(:user) }
+
+    it 'sets @user' do
+      set_current_user
+
+      get :show, id: user.id
+
+      expect(assigns[:user]).to eq(user)
+    end
+
+    it_behaves_like 'requires sign in' do
+      let(:action) { get :show, id: user.id }
+    end
+  end
 end

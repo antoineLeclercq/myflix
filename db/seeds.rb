@@ -114,8 +114,22 @@ Video.create(
 Category.create(name: 'TV Comedies')
 Category.create(name: 'Movies')
 
-User.create(email: 'antoine@example.com', full_name: 'Antoine Leclercq', password: 'antoine')
-User.create(email: 'email@example.com', full_name: 'Net Flix', password: 'password')
+antoine = User.create(email: 'antoine@example.com', full_name: 'Antoine Leclercq', password: 'antoine')
+example_user = User.create(email: 'email@example.com', full_name: 'Net Flix', password: 'password')
+user1 = Fabricate(:user)
+user2 = Fabricate(:user)
 
 Review.create(rating: 4, body: 'This TV show is awesome!', video: Video.first, creator: User.first)
 Review.create(rating: 5, body: 'I love this TV show!', video: Video.first, creator: User.second)
+
+QueueItem.create(user: user1, video: Video.first)
+QueueItem.create(user: user1, video: Video.second)
+QueueItem.create(user: user2, video: Video.first)
+
+Relationship.create(follower: antoine, leader: example_user)
+Relationship.create(follower: antoine, leader: user1)
+Relationship.create(follower: antoine, leader: user2)
+Relationship.create(follower: user1, leader: antoine)
+Relationship.create(follower: example_user, leader: antoine)
+Relationship.create(follower: example_user, leader: user1)
+

@@ -6,7 +6,7 @@
       %ul.nav.navbar-nav
         %li= link_to "Videos", home_path
         %li= link_to "My Queue", my_queue_path
-        %li= link_to "People"
+        %li= link_to "People", people_path
       = form_tag search_videos_path, method: 'get', class: 'navbar-form navbar-left' do
         .form-group
           = text_field_tag :search_term, '', class: 'form-control', placeholder: 'Search for videos here'
@@ -19,6 +19,6 @@
               %i.caret>
             %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
               %li
-                %a(href="#") Account
+                = link_to 'Account', user_path(current_user)
                 %a(href="#") Plan and Billing
                 = link_to 'Sign Out', sign_out_path, method: 'post'

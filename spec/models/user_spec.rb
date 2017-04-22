@@ -9,4 +9,55 @@ describe User do
   it { should validate_presence_of(:password) }
   it { should validate_length_of(:password).is_at_least(5) }
   it { should validate_presence_of(:full_name) }
+  it { should have_many(:following_relationships).class_name('Relationship').with_foreign_key(:follower_id) }
+  it { should have_many(:leaders).through(:following_relationships) }
+  it { should have_many(:leading_relationships).class_name('Relationship').with_foreign_key(:leader_id) }
+  it { should have_many(:followers).through(:leading_relationships) }
+
+  describe '#follows?' do
+    it 'returns true if the user has a following relationship with another user' do
+      bob = Fabricate(:user)
+      joe = Fabricate(:user)
+      Fabricate(:relationship, follower: bob, leader: joe)
+
+      expect(bob.follows?(joe)).to eq(true)
+    end
+
+    it "returns false if the user doesn't have a following relationship with another user" do
+      bob = Fabricate(:user)
+      joe = Fabricate(:user)
+
+      expect(bob.follows?(joe)).to eq(false)
+    end
+  end
+
+  describe '#can_follow?' do
+    it "returns true if the user doesn't have a following relationship with another user" do
+      bob = Fabricate(:user)
+      joe = Fabricate(:user)
+
+      expect(bob.can_follow?(joe)).to eq(true)
+    end
+
+    it "returns true if the user isn't the other user" do
+      bob = Fabricate(:user)
+      joe = Fabricate(:user)
+
+      expect(bob.can_follow?(joe)).to eq(true)
+    end
+
+    it 'returns false if the user has a following relationship with another user' do
+      bob = Fabricate(:user)
+      joe = Fabricate(:user)
+      Fabricate(:relationship, follower: bob, leader: joe)
+
+      expect(bob.can_follow?(joe)).to eq(false)
+    end
+
+    it "returns false if the user is the other user" do
+      bob = Fabricate(:user)
+
+      expect(bob.can_follow?(bob)).to eq(false)
+    end
+  end
 end

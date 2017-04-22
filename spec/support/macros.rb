@@ -1,5 +1,4 @@
-def set_current_user
-  user = Fabricate(:user)
+def set_current_user(user=Fabricate(:user))
   session[:user_id] = user.id
 end
 
@@ -20,4 +19,9 @@ def sign_in(a_user=nil)
     fill_in 'Password', with: user.password
   end
   click_button 'Sign In'
+end
+
+def click_on_video_on_home_page(video)
+  visit home_path
+  find("a[href='#{video_path(video)}']").click
 end

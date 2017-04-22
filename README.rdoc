@@ -5,11 +5,11 @@
 - Users can review videos (rating + comment)
 - Users can add/delete/reorder videos from their videos queue
 - Users can follow and unfollow other users
+- Users receive a welcome email upon registration
 
 ## To be implemented:
 - Users can send emails inviting friends to join
 - Friends invited by a current user will automatically follow the current user if they sign up
-- Users receive a welcome email upon registration
 - Payments using Stripe
 - Admins can add videos and video images (stored with S3)
 

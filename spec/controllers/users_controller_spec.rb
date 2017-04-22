@@ -15,6 +15,8 @@ describe UsersController do
   end
 
   describe 'POST create' do
+    after { ActionMailer::Base.deliveries.clear }
+    
     context 'with unauthenticated users' do
       it 'sets @user' do
         post :create, user: Fabricate.attributes_for(:user)
@@ -34,15 +36,39 @@ describe UsersController do
           expect(response).to redirect_to(sign_in_path)
         end
 
+        context 'sending email' do
+          it 'sends out an email' do
+            post :create, user: { email: 'bob@example.com', password: 'password', full_name: 'Bob Doe' }
+            expect(ActionMailer::Base.deliveries).not_to be_empty
+          end
+
+          it 'sends out an email to the correct recipient' do
+            post :create, user: { email: 'bob@example.com', password: 'password', full_name: 'Bob Doe' }
+            expect(ActionMailer::Base.deliveries.last.to).to eq(['bob@example.com'])
+          end
+
+          it 'sends out an email containing the reciptient name' do
+            post :create, user: { email: 'bob@example.com', password: 'password', full_name: 'Bob Doe' }
+            expect(ActionMailer::Base.deliveries.last.body).to include('Bob Doe')
+          end
+        end
+
         it 'sets success message' do
           post :create, user: Fabricate.attributes_for(:user)
           expect(flash[:success]).to be_present
         end
       end
 
-      it 'renders new page if invalid input' do
-        post :create, user: Fabricate.attributes_for(:user, password: 'a')
-        expect(response).to render_template(:new)
+      context 'invalid input' do
+        it 'does not send out an email' do
+          post :create, user: { email: 'bob@example.com', password: '', full_name: 'Bob Doe' }
+          expect(ActionMailer::Base.deliveries).to be_empty
+        end
+
+        it 'renders new page' do
+          post :create, user: Fabricate.attributes_for(:user, password: 'a')
+          expect(response).to render_template(:new)
+        end
       end
     end
 

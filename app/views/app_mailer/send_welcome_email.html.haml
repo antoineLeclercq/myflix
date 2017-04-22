@@ -1,0 +1,7 @@
+!!! 5
+%html(lang="en-US")
+  %body
+    %p Welcome to Myflix, #{@user.full_name}!
+    %p
+      You are now registered. You can now sign in
+      = link_to 'here', sign_in_url

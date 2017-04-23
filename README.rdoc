@@ -6,6 +6,8 @@
 - Users can add/delete/reorder videos from their videos queue
 - Users can follow and unfollow other users
 - Users receive a welcome email upon registration
+- Tokenized Users, Videos, Categories
+- User can reset password by receiving an email with a link
 
 ## To be implemented:
 - Users can send emails inviting friends to join
@@ -18,7 +20,7 @@
 - TDD using comprehensive unit, model, and integration test coverage with RSpec and Capybara
 - GitHub workflow
 
-## Future:
+## Future development process:
 - Continuous development using Circle CI
 - Uses a unicorn server
 - Utilizes sidekiq for email sending

@@ -7,12 +7,12 @@ describe VideosController do
     let(:video) { Fabricate(:video) }
 
     it 'sets @video' do
-      get :show, id: video.id
+      get :show, id: video.token
       expect(assigns(:video)).to eq(video)
     end
 
     it 'sets @review as new record' do
-      get :show, id: video.id
+      get :show, id: video.token
       expect(assigns(:review)).to be_instance_of(Review)
       expect(assigns(:review)).to be_new_record
     end

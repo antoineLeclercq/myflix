@@ -41,7 +41,7 @@ describe SessionsController do
 
         it 'sets error message' do
           post :create, email: user.email, password: 'a'
-          expect(flash[:danger]).to be_present
+          expect(flash[:error]).to be_present
         end
 
         it 'redirects to sign in page' do

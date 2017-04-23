@@ -14,6 +14,11 @@ describe User do
   it { should have_many(:leading_relationships).class_name('Relationship').with_foreign_key(:leader_id) }
   it { should have_many(:followers).through(:leading_relationships) }
 
+  it 'generates a random token when the user is created' do
+    joe = Fabricate(:user)
+    expect(joe.token).to be_present
+  end
+
   describe '#follows?' do
     it 'returns true if the user has a following relationship with another user' do
       bob = Fabricate(:user)

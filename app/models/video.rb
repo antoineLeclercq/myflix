@@ -1,4 +1,6 @@
 class Video < ActiveRecord::Base
+  include Tokenable
+
   belongs_to :category
   has_many :reviews, -> { order(created_at: :desc) }
 

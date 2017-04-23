@@ -6,6 +6,11 @@ describe Video do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:description) }
 
+  it 'generates a random token when the user is created' do
+    inception = Fabricate(:video)
+    expect(inception.token).to be_present
+  end
+
   describe 'search_by_title' do
     let(:inception) { Video.create(title: 'Inception', description: 'great movie') }
     let(:blood_diamond) { Video.create(title: 'Blood Diamond', description: 'awesome movie') }

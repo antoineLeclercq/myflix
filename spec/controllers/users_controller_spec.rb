@@ -16,7 +16,7 @@ describe UsersController do
 
   describe 'POST create' do
     after { ActionMailer::Base.deliveries.clear }
-    
+
     context 'with unauthenticated users' do
       it 'sets @user' do
         post :create, user: Fabricate.attributes_for(:user)
@@ -85,13 +85,13 @@ describe UsersController do
     it 'sets @user' do
       set_current_user
 
-      get :show, id: user.id
+      get :show, id: user.token
 
       expect(assigns[:user]).to eq(user)
     end
 
     it_behaves_like 'requires sign in' do
-      let(:action) { get :show, id: user.id }
+      let(:action) { get :show, id: user.token }
     end
   end
 end

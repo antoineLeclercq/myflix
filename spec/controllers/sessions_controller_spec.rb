@@ -71,7 +71,7 @@ describe SessionsController do
       end
 
       it 'sets a notice message' do
-        expect(flash[:info]).to be_present
+        expect(flash[:notice]).to be_present
       end
 
       it ('redirects to root path') do

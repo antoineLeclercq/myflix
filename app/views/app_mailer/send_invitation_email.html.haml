@@ -1,0 +1,9 @@
+!!! 5
+%html(lang="en-US")
+  %body
+    %p Hello from Myflix, #{@invitation.recipient_name}!
+    %p #{@invitation.inviter.full_name} is inviting you to join Myflix:
+    %p= @invitation.message
+    %p
+      You can accept this inivitatino by by clicking
+      = link_to 'here', register_with_token_url(@invitation)

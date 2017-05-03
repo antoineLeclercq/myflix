@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :leading_relationships, class_name: 'Relationship', foreign_key: :leader_id
   has_many :followers, through: :leading_relationships
 
+  has_many :invitations, foreign_key: :inviter_id
+
   has_secure_password validations: false
 
   validates :email, presence: true, uniqueness: true
@@ -36,5 +38,9 @@ class User < ActiveRecord::Base
 
   def can_follow?(another_user)
     !(follows?(another_user) || self == another_user)
+  end
+
+  def follow(another_user)
+    following_relationships.create(leader: another_user) if can_follow?(another_user)
   end
 end

@@ -1,5 +1,5 @@
 Use the following logins on the production App:
-- Email: email@example.com
+- Email: test@myflix.com
 - Password: password
 
 Features involving emails will not work for now because the production app is using a Mailgun Sandbox which requires to add authorized users. In the future a custom domain will be added and verified by Mailgun which will allow for these features to work. 

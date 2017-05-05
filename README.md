@@ -1,3 +1,7 @@
+Use the following logins on the production App:
+email@example.com
+
+
 # Features
 ## Implemented:
 - User authentication using bcrypt

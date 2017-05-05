@@ -12,13 +12,14 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'rails', '4.1.1'
 gem 'sass-rails'
+gem 'sidekiq', '4.2.10'
 gem 'uglifier'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'thin'
   gem 'letter_opener'
+  gem 'thin'
 end
 
 group :development, :test do

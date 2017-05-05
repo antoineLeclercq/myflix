@@ -9,7 +9,7 @@ class InvitationsController < ApplicationController
     @invitation = current_user.invitations.build(invitation_params)
 
     if @invitation.save
-      AppMailer.send_invitation_email(@invitation).deliver
+      AppMailer.delay.send_invitation_email(@invitation)
       flash[:success] = "An invitation email has been sent to #{@invitation.recipient_email}"
       redirect_to new_invitation_path
     else

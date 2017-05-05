@@ -38,18 +38,24 @@ describe UsersController do
 
         context 'sending email' do
           it 'sends out an email' do
-            post :create, user: { email: 'bob@example.com', password: 'password', full_name: 'Bob Doe' }
-            expect(ActionMailer::Base.deliveries).not_to be_empty
+            Sidekiq::Testing.inline! do
+              post :create, user: { email: 'bob@example.com', password: 'password', full_name: 'Bob Doe' }
+              expect(ActionMailer::Base.deliveries).not_to be_empty
+            end
           end
 
           it 'sends out an email to the correct recipient' do
-            post :create, user: { email: 'bob@example.com', password: 'password', full_name: 'Bob Doe' }
-            expect(ActionMailer::Base.deliveries.last.to).to eq(['bob@example.com'])
+            Sidekiq::Testing.inline! do
+              post :create, user: { email: 'bob@example.com', password: 'password', full_name: 'Bob Doe' }
+              expect(ActionMailer::Base.deliveries.last.to).to eq(['bob@example.com'])
+            end
           end
 
           it 'sends out an email containing the reciptient name' do
-            post :create, user: { email: 'bob@example.com', password: 'password', full_name: 'Bob Doe' }
-            expect(ActionMailer::Base.deliveries.last.body).to include('Bob Doe')
+            Sidekiq::Testing.inline! do
+              post :create, user: { email: 'bob@example.com', password: 'password', full_name: 'Bob Doe' }
+              expect(ActionMailer::Base.deliveries.last.body).to include('Bob Doe')
+            end
           end
         end
 

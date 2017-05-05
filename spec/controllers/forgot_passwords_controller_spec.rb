@@ -20,10 +20,12 @@ describe ForgotPasswordsController do
       after { ActionMailer::Base.deliveries.clear }
 
       it 'sends out an email to the email address' do
-        Fabricate(:user, email: 'joe@example.com')
-        post :create, email: 'joe@example.com'
+        Sidekiq::Testing.inline! do
+          Fabricate(:user, email: 'joe@example.com')
+          post :create, email: 'joe@example.com'
 
-        expect(ActionMailer::Base.deliveries.count).to eq(1)
+          expect(ActionMailer::Base.deliveries.count).to eq(1)
+        end
       end
 
       it 'redirects to the forgot password confirmation page' do

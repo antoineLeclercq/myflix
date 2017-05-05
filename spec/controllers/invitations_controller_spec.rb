@@ -33,11 +33,13 @@ describe InvitationsController do
       end
 
       it 'sends an invitation email to recipient' do
-        set_current_user
+        Sidekiq::Testing.inline! do
+          set_current_user
 
-        post :create, invitation: Fabricate.attributes_for(:invitation, recipient_email: 'bob@example.com')
+          post :create, invitation: Fabricate.attributes_for(:invitation, recipient_email: 'bob@example.com')
 
-        expect(ActionMailer::Base.deliveries.last.to).to eq(['bob@example.com'])
+          expect(ActionMailer::Base.deliveries.last.to).to eq(['bob@example.com'])
+        end
       end
 
       it 'sets success message' do

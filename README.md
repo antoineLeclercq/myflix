@@ -1,6 +1,9 @@
 Use the following logins on the production App:
-email@example.com
+- Email: email@example.com
+- Password: password
 
+Features involving emails will not work for now because the production app is using a Mailgun Sandbox which requires to add authorized users. In the future a custom domain will be added and verified by Mailgun which will allow for these features to work. 
+In the meantime, if you wish to test these features, please send me your email at: antoine.leclercq.49@gmail.com and I will add you to the list of authorized users.
 
 # Features
 ## Implemented:

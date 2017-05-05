@@ -4,9 +4,8 @@ describe Category do
   it { should have_many(:videos) }
   it { should validate_presence_of(:name) }
 
-  it 'generates a random token when the user is created' do
-    movies = Fabricate(:category)
-    expect(movies.token).to be_present
+  it_behaves_like 'tokenable' do
+    let(:object) { Fabricate(:category) }
   end
 
   describe '#recent_videos' do

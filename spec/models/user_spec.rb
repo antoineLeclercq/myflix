@@ -15,9 +15,8 @@ describe User do
   it { should have_many(:followers).through(:leading_relationships) }
   it { should have_many(:invitations).with_foreign_key(:inviter_id) }
 
-  it 'generates a random token when the user is created' do
-    joe = Fabricate(:user)
-    expect(joe.token).to be_present
+  it_behaves_like 'tokenable' do
+    let(:object) { Fabricate(:user) }
   end
 
   describe '#follows?' do

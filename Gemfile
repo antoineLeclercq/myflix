@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'rails', '4.1.1'
 gem 'sass-rails'
+gem "sentry-raven"
 gem 'sidekiq', '4.2.10'
 gem 'uglifier'
 

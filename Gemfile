@@ -37,11 +37,11 @@ group :test do
   gem 'vcr', '2.9.3'
 end
 
-group :development, :production do
+group :development, :staging, :production do
   gem 'puma'
 end
 
-group :production do
+group :staging, :production do
   gem 'rails_12factor'
 end
 

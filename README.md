@@ -26,10 +26,8 @@ In the meantime, if you wish to test these features, please send me your email a
 ## Current:
 - TDD using comprehensive unit, model, and integration test coverage with RSpec and Capybara
 - GitHub workflow
-
-## Future development process:
 - Continuous development using Circle CI
-- Use a unicorn server
-- Utilize sidekiq for email sending
+- Use Puma as web server
+- Utilize Redis and Sidekiq for background jobs such as email sending
 - Use Raven for monitoring production server errors
-- Heroku deployment utilized staging and production servers
+- Heroku deployment with staging and production servers

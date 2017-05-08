@@ -5,4 +5,4 @@
     - category.recent_videos.each do |video|
       .video.col-sm-2
         = link_to video_path(video) do
-          %img.cover-small(src="#{video.cover_url_small}")
+          %img.cover-small(src="#{video.small_cover}")

@@ -11,4 +11,4 @@
     - @category.videos.each do |video|
       .video.col-md-2
         = link_to video_path(video) do
-          %img.cover-small(src="#{video.cover_url_small}")
+          %img.cover-small(src="#{video.small_cover}")

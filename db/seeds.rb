@@ -145,3 +145,4 @@ Relationship.create(follower: user1, leader: antoine)
 Relationship.create(follower: example_user, leader: antoine)
 Relationship.create(follower: example_user, leader: user1)
 
+50.times { Fabricate(:review, video: Video.all.sample, creator: User.all.sample) }

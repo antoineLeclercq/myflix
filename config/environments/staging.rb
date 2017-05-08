@@ -28,5 +28,8 @@ Myflix::Application.configure do
     authentication: :plain
   }
   config.action_mailer.default_url_options = { host: 'myflix-staging-antoineleclercq.herokuapp.com' }
+end
 
+Raven.configure do |config|
+  config.dsn = ENV['RAVEN_DSN']
 end

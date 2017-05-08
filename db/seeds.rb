@@ -1,113 +1,116 @@
+small_cover_uploader = SmallCoverUploader.new
+large_cover_uploader = LargeCoverUploader.new
+
 Video.create(
   title: 'Friends',
   description: 'Friends is an American situation comedy about a group of friends living in the New York City borough of Manhattan. It was created by David Crane and Marta Kauffman, which premiered on NBC on September 22, 1994. The series was produced by Bright/Kauffman/Crane Productions, in association with Warner Bros. Television.',
-  cover_url_small: '/tmp/friends.jpg',
-  cover_url_large: '/tmp/friends_large.png',
+  small_cover: Rails.root.join('public/uploads/friends.jpg').open,
+  large_cover: Rails.root.join('public/uploads/friends_large.png').open,
   category_id: 1
 )
 Video.create(
   title: 'Monk',
   description: 'Monk is an American comedy-drama detective mystery television series created by Andy Breckman and starring Tony Shalhoub as the eponymous character, Adrian Monk.',
-  cover_url_small: '/tmp/monk.jpg',
-  cover_url_large: '/tmp/monk_large.jpg',
+  small_cover: Rails.root.join('public/uploads/monk.jpg').open,
+  large_cover: Rails.root.join('public/uploads/monk_large.jpg').open,
   category_id: 1
 )
 Video.create(
   title: 'Inception',
   description: 'The film stars Leonardo DiCaprio as a professional thief who steals information by infiltrating the subconscious, and is offered a chance to have his criminal history erased as payment for a seemingly impossible task: "inception", the implantation of another person\'s idea into a target\'s subconscious.',
-  cover_url_small: '/tmp/inception.jpg',
-  cover_url_large: '/tmp/inception_large.jpg',
+  small_cover: Rails.root.join('public/uploads/inception.jpg').open,
+  large_cover: Rails.root.join('public/uploads/inception_large.jpg').open,
   category_id: 2
 )
 Video.create(
   title: 'Gladiator',
   description: 'Maximus is a powerful Roman general, loved by the people and the aging Emperor, Marcus Aurelius. Before his death, the Emperor chooses Maximus to be his heir over his own son, Commodus, and a power struggle leaves Maximus and his family condemned to death.',
-  cover_url_small: '/tmp/gladiator.jpg',
-  cover_url_large: '/tmp/gladiator_large.jpg',
+  small_cover: Rails.root.join('public/uploads/gladiator.jpg').open,
+  large_cover: Rails.root.join('public/uploads/gladiator_large.jpg').open,
   category_id: 2
 )
 Video.create(
   title: 'Monk',
   description: 'Monk is an American comedy-drama detective mystery television series created by Andy Breckman and starring Tony Shalhoub as the eponymous character, Adrian Monk.',
-  cover_url_small: '/tmp/monk.jpg',
-  cover_url_large: '/tmp/monk_large.jpg',
+  small_cover: Rails.root.join('public/uploads/monk.jpg').open,
+  large_cover: Rails.root.join('public/uploads/monk_large.jpg').open,
   category_id: 1
 )
 Video.create(
   title: 'Friends',
   description: 'Friends is an American situation comedy about a group of friends living in the New York City borough of Manhattan. It was created by David Crane and Marta Kauffman, which premiered on NBC on September 22, 1994. The series was produced by Bright/Kauffman/Crane Productions, in association with Warner Bros. Television.',
-  cover_url_small: '/tmp/friends.jpg',
-  cover_url_large: '/tmp/friends_large.png',
+  small_cover: Rails.root.join('public/uploads/friends.jpg').open,
+  large_cover: Rails.root.join('public/uploads/friends_large.png').open,
   category_id: 1
 )
 Video.create(
   title: 'Inception',
   description: 'The film stars Leonardo DiCaprio as a professional thief who steals information by infiltrating the subconscious, and is offered a chance to have his criminal history erased as payment for a seemingly impossible task: "inception", the implantation of another person\'s idea into a target\'s subconscious.',
-  cover_url_small: '/tmp/inception.jpg',
-  cover_url_large: '/tmp/inception_large.jpg',
+  small_cover: Rails.root.join('public/uploads/inception.jpg').open,
+  large_cover: Rails.root.join('public/uploads/inception_large.jpg').open,
   category_id: 2
 )
 Video.create(
   title: 'Gladiator',
   description: 'Maximus is a powerful Roman general, loved by the people and the aging Emperor, Marcus Aurelius. Before his death, the Emperor chooses Maximus to be his heir over his own son, Commodus, and a power struggle leaves Maximus and his family condemned to death.',
-  cover_url_small: '/tmp/gladiator.jpg',
-  cover_url_large: '/tmp/gladiator_large.jpg',
+  small_cover: Rails.root.join('public/uploads/gladiator.jpg').open,
+  large_cover: Rails.root.join('public/uploads/gladiator_large.jpg').open,
   category_id: 2
 )
 Video.create(
   title: 'Monk',
   description: 'Monk is an American comedy-drama detective mystery television series created by Andy Breckman and starring Tony Shalhoub as the eponymous character, Adrian Monk.',
-  cover_url_small: '/tmp/monk.jpg',
-  cover_url_large: '/tmp/monk_large.jpg',
+  small_cover: Rails.root.join('public/uploads/monk.jpg').open,
+  large_cover: Rails.root.join('public/uploads/monk_large.jpg').open,
   category_id: 1
 )
 Video.create(
   title: 'Friends',
   description: 'Friends is an American situation comedy about a group of friends living in the New York City borough of Manhattan. It was created by David Crane and Marta Kauffman, which premiered on NBC on September 22, 1994. The series was produced by Bright/Kauffman/Crane Productions, in association with Warner Bros. Television.',
-  cover_url_small: '/tmp/friends.jpg',
-  cover_url_large: '/tmp/friends_large.png',
+  small_cover: Rails.root.join('public/uploads/friends.jpg').open,
+  large_cover: Rails.root.join('public/uploads/friends_large.png').open,
   category_id: 1
 )
 Video.create(
   title: 'Inception',
   description: 'The film stars Leonardo DiCaprio as a professional thief who steals information by infiltrating the subconscious, and is offered a chance to have his criminal history erased as payment for a seemingly impossible task: "inception", the implantation of another person\'s idea into a target\'s subconscious.',
-  cover_url_small: '/tmp/inception.jpg',
-  cover_url_large: '/tmp/inception_large.jpg',
+  small_cover: Rails.root.join('public/uploads/inception.jpg').open,
+  large_cover: Rails.root.join('public/uploads/inception_large.jpg').open,
   category_id: 2
 )
 Video.create(
   title: 'Gladiator',
   description: 'Maximus is a powerful Roman general, loved by the people and the aging Emperor, Marcus Aurelius. Before his death, the Emperor chooses Maximus to be his heir over his own son, Commodus, and a power struggle leaves Maximus and his family condemned to death.',
-  cover_url_small: '/tmp/gladiator.jpg',
-  cover_url_large: '/tmp/gladiator_large.jpg',
+  small_cover: Rails.root.join('public/uploads/gladiator.jpg').open,
+  large_cover: Rails.root.join('public/uploads/gladiator_large.jpg').open,
   category_id: 2
 )
 Video.create(
   title: 'Monk',
   description: 'Monk is an American comedy-drama detective mystery television series created by Andy Breckman and starring Tony Shalhoub as the eponymous character, Adrian Monk.',
-  cover_url_small: '/tmp/monk.jpg',
-  cover_url_large: '/tmp/monk_large.jpg',
+  small_cover: Rails.root.join('public/uploads/monk.jpg').open,
+  large_cover: Rails.root.join('public/uploads/monk_large.jpg').open,
   category_id: 1
 )
 Video.create(
   title: 'Friends',
   description: 'Friends is an American situation comedy about a group of friends living in the New York City borough of Manhattan. It was created by David Crane and Marta Kauffman, which premiered on NBC on September 22, 1994. The series was produced by Bright/Kauffman/Crane Productions, in association with Warner Bros. Television.',
-  cover_url_small: '/tmp/friends.jpg',
-  cover_url_large: '/tmp/friends_large.png',
+  small_cover: Rails.root.join('public/uploads/friends.jpg').open,
+  large_cover: Rails.root.join('public/uploads/friends_large.png').open,
   category_id: 1
 )
 Video.create(
   title: 'Inception',
   description: 'The film stars Leonardo DiCaprio as a professional thief who steals information by infiltrating the subconscious, and is offered a chance to have his criminal history erased as payment for a seemingly impossible task: "inception", the implantation of another person\'s idea into a target\'s subconscious.',
-  cover_url_small: '/tmp/inception.jpg',
-  cover_url_large: '/tmp/inception_large.jpg',
+  small_cover: Rails.root.join('public/uploads/inception.jpg').open,
+  large_cover: Rails.root.join('public/uploads/inception_large.jpg').open,
   category_id: 2
 )
 Video.create(
   title: 'Gladiator',
   description: 'Maximus is a powerful Roman general, loved by the people and the aging Emperor, Marcus Aurelius. Before his death, the Emperor chooses Maximus to be his heir over his own son, Commodus, and a power struggle leaves Maximus and his family condemned to death.',
-  cover_url_small: '/tmp/gladiator.jpg',
-  cover_url_large: '/tmp/gladiator_large.jpg',
+  small_cover: Rails.root.join('public/uploads/gladiator.jpg').open,
+  large_cover: Rails.root.join('public/uploads/gladiator_large.jpg').open,
   category_id: 2
 )
 

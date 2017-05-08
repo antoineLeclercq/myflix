@@ -125,7 +125,7 @@ Video.create(
 Category.create(name: 'TV Comedies')
 Category.create(name: 'Movies')
 
-antoine = User.create(email: 'antoine@example.com', full_name: 'Antoine Leclercq', password: 'antoine')
+antoine = User.create(email: 'antoine@example.com', full_name: 'Antoine Leclercq', password: 'antoine', admin: true)
 example_user = User.create(email: 'email@example.com', full_name: 'Net Flix', password: 'password')
 example_user = User.create(email: 'test@myflix.com', full_name: 'Firsty Lasty', password: 'password')
 user1 = Fabricate(:user)

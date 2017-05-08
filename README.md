@@ -17,17 +17,16 @@ In the meantime, if you wish to test these features, please send me your email a
 - User can reset password by receiving an email with a link
 - Users can send emails inviting friends to join
 - Friends invited by a current user will automatically follow the current user if they sign up
+- Admins can add videos and video images (stored with Amazon S3)
 
 ## To be implemented:
 - Payments using Stripe
-- Admins can add videos and video images (stored with S3)
 
 # Development
-## Current:
 - TDD using comprehensive unit, model, and integration test coverage with RSpec and Capybara
 - GitHub workflow
 - Continuous development using Circle CI
 - Use Puma as web server
 - Utilize Redis and Sidekiq for background jobs such as email sending
-- Use Raven for monitoring production server errors
+- Use Raven for monitoring staging and production server errors
 - Heroku deployment with staging and production servers

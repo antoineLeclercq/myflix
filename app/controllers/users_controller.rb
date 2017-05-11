@@ -23,15 +23,13 @@ class UsersController < ApplicationController
 
     if @user.save
       handle_invitation
-      binding.pry
       begin
         Stripe.api_key = ENV['stripe_api_key']
         token = params[:stripeToken]
-        charge = Stripe::Charge.create(
+        charge = StripeWrapper::Charge.create(
           amount: 999,
-          currency: "usd",
           description: "Sign up charge for #{@user.email}",
-          source: token,
+          source: token
         )
       rescue Stripe::CardError => e
         flash[:error] = e.message

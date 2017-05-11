@@ -18,8 +18,6 @@ In the meantime, if you wish to test these features, please send me your email a
 - Users can send emails inviting friends to join
 - Friends invited by a current user will automatically follow the current user if they sign up
 - Admins can add videos and video images (stored with Amazon S3)
-
-## To be implemented:
 - Payments using Stripe
 
 # Development

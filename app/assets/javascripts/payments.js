@@ -1,5 +1,5 @@
 $(function () {
-  var stripe = Stripe("#{ENV['stripe_publishable_key']}");
+  var stripe = Stripe("pk_test_GT9YyQg5QSGKdDurDCCxpo4h");
   var elements = stripe.elements();
 
   var style = {
@@ -7,7 +7,10 @@ $(function () {
       // Add your base input styles here. For example:
       fontSize: '14px',
       lineHeight: '30px'
-    }
+    },
+    'invalid': {
+      'color': 'red',
+    },
   };
 
   // Create an instance of the card Element

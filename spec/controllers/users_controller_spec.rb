@@ -15,16 +15,19 @@ describe UsersController do
   end
 
   describe 'POST create' do
-    before { allow(StripeWrapper::Charge).to receive(:create) }
     after { ActionMailer::Base.deliveries.clear }
 
     context 'with unauthenticated users' do
       it 'sets @user' do
+        charge = double(:charge, successful?: true)
+        allow(StripeWrapper::Charge).to receive(:create) { charge }
         post :create, user: Fabricate.attributes_for(:user)
         expect(assigns(:user)).to be_instance_of(User)
       end
 
       it 'tries to create the user' do
+        charge = double(:charge, successful?: true)
+        allow(StripeWrapper::Charge).to receive(:create) { charge }
         user = Fabricate.build(:user)
         expect(User).to receive(:new).and_return(user)
         expect(user).to receive(:save)
@@ -32,6 +35,9 @@ describe UsersController do
       end
 
       context 'valid personal info and valid card' do
+        let(:charge) { double(:charge, successful?: true) }
+        before { expect(StripeWrapper::Charge).to receive(:create) { charge } }
+
         it 'redirects to sign in page' do
           post :create, user: Fabricate.attributes_for(:user)
           expect(response).to redirect_to(sign_in_path)
@@ -60,31 +66,33 @@ describe UsersController do
           end
         end
 
-        it 'makes the inviter follow the reciever' do
-          joe = Fabricate(:user)
-          bob = Fabricate.attributes_for(:user, email: 'bob@example.com')
-          bob_invitation = Fabricate(:invitation, inviter: joe, recipient_email: bob[:email])
-          post :create, user: bob, invitation_token: bob_invitation.token
+        context 'with invitation' do
+          it 'makes the inviter follow the reciever' do
+            joe = Fabricate(:user)
+            bob = Fabricate.attributes_for(:user, email: 'bob@example.com')
+            bob_invitation = Fabricate(:invitation, inviter: joe, recipient_email: bob[:email])
+            post :create, user: bob, invitation_token: bob_invitation.token
 
-          expect(User.find_by(email: bob[:email]).followers).to include(bob_invitation.inviter)
-        end
+            expect(User.find_by(email: bob[:email]).followers).to include(bob_invitation.inviter)
+          end
 
-        it 'makes the receiver follow the inviter' do
-          joe = Fabricate(:user)
-          bob = Fabricate.attributes_for(:user, email: 'bob@example.com')
-          bob_invitation = Fabricate(:invitation, inviter: joe, recipient_email: bob[:email])
-          post :create, user: bob, invitation_token: bob_invitation.token
+          it 'makes the receiver follow the inviter' do
+            joe = Fabricate(:user)
+            bob = Fabricate.attributes_for(:user, email: 'bob@example.com')
+            bob_invitation = Fabricate(:invitation, inviter: joe, recipient_email: bob[:email])
+            post :create, user: bob, invitation_token: bob_invitation.token
 
-          expect(joe.followers).to include(User.find_by(email: bob[:email]))
-        end
+            expect(joe.followers).to include(User.find_by(email: bob[:email]))
+          end
 
-        it 'expires the invitation upon acceptance' do
-          joe = Fabricate(:user)
-          bob = Fabricate.attributes_for(:user, email: 'bob@example.com')
-          bob_invitation = Fabricate(:invitation, inviter: joe, recipient_email: bob[:email])
-          post :create, user: bob, invitation_token: bob_invitation.token
+          it 'expires the invitation upon acceptance' do
+            joe = Fabricate(:user)
+            bob = Fabricate.attributes_for(:user, email: 'bob@example.com')
+            bob_invitation = Fabricate(:invitation, inviter: joe, recipient_email: bob[:email])
+            post :create, user: bob, invitation_token: bob_invitation.token
 
-          expect(bob_invitation.reload.token).to be_nil
+            expect(bob_invitation.reload.token).to be_nil
+          end
         end
 
         it 'sets success message' do
@@ -94,10 +102,35 @@ describe UsersController do
       end
 
       context 'valid personal info and declined card' do
-        
+        it 'does not create a new user record' do
+          charge = double(:charge, successful?: false, error_message: 'card was declined')
+          expect(StripeWrapper::Charge).to receive(:create) { charge }
+
+          post :create, user: Fabricate.attributes_for(:user), stripeToken: '1234567'
+
+          expect(User.count).to eq(0)
+        end
+
+        it 'sets flash error message' do
+          charge = double(:charge, successful?: false, error_message: 'card was declined')
+          expect(StripeWrapper::Charge).to receive(:create) { charge }
+
+          post :create, user: Fabricate.attributes_for(:user), stripeToken: '1234567'
+
+          expect(flash[:error]).to eq(charge.error_message)
+        end
+
+        it 'renders the new template' do
+          charge = double(:charge, successful?: false, error_message: 'card was declined')
+          expect(StripeWrapper::Charge).to receive(:create) { charge }
+
+          post :create, user: Fabricate.attributes_for(:user), stripeToken: '1234567'
+
+          expect(response).to render_template(:new)
+        end
       end
 
-      context 'invalid input' do
+      context 'invalid personal info' do
         it 'does not send out an email' do
           post :create, user: { email: 'bob@example.com', password: '', full_name: 'Bob Doe' }
           expect(ActionMailer::Base.deliveries).to be_empty
@@ -106,6 +139,11 @@ describe UsersController do
         it 'renders new page' do
           post :create, user: Fabricate.attributes_for(:user, password: 'a')
           expect(response).to render_template(:new)
+        end
+
+        it 'does not charge the card' do
+          expect(StripeWrapper::Charge).not_to receive(:create)
+          post :create, user: Fabricate.attributes_for(:user, password: 'a'), stripeToken: '1234567'
         end
       end
     end

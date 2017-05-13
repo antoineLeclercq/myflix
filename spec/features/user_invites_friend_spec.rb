@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User invites a friend' do
-  scenario 'user successfully invites a friend and the invitation is accepted' do
+  scenario 'user successfully invites a friend and the invitation is accepted', js: true, vcr: true do
     Sidekiq::Testing.inline! do
       bob = Fabricate(:user)
       sign_in(bob)
@@ -33,10 +33,23 @@ feature 'User invites a friend' do
 
     fill_in 'Password', with: 'password'
     fill_in 'Full Name', with: 'Joe Joe'
+
+    stripe_iframe = find('iframe[name=__privateStripeFrame3]')
+    within_frame stripe_iframe do
+      fill_in 'cardnumber', with: '4242424242424242'
+      fill_in 'exp-date', with: '07/18'
+      fill_in 'cvc', with: '123'
+      fill_in 'postal', with: '10001'
+    end
+
     click_button 'Sign Up'
   end
 
   def friend_signs_in
+    # needed because of previous JS asynchronous call with stripe
+    # with `find` Capybara waits for the page to load before trying to fill in fields
+    find('#email')
+
     fill_in 'Email Address', with: 'joe@example.com'
     fill_in 'Password', with: 'password'
     click_button 'Sign In'

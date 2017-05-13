@@ -31,7 +31,7 @@ describe UsersController do
         post :create, user: user.attributes
       end
 
-      context 'valid input' do
+      context 'valid personal info and valid card' do
         it 'redirects to sign in page' do
           post :create, user: Fabricate.attributes_for(:user)
           expect(response).to redirect_to(sign_in_path)
@@ -91,6 +91,10 @@ describe UsersController do
           post :create, user: Fabricate.attributes_for(:user)
           expect(flash[:success]).to be_present
         end
+      end
+
+      context 'valid personal info and declined card' do
+        
       end
 
       context 'invalid input' do

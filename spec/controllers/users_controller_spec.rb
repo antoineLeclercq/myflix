@@ -15,6 +15,7 @@ describe UsersController do
   end
 
   describe 'POST create' do
+    before { allow(StripeWrapper::Charge).to receive(:create) }
     after { ActionMailer::Base.deliveries.clear }
 
     context 'with unauthenticated users' do

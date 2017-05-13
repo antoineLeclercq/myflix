@@ -38,7 +38,9 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-email'
-  gem 'database_cleaner', '1.4.1'
+  gem 'chromedriver-helper'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 3.0'
   gem 'vcr'
   gem 'webmock'

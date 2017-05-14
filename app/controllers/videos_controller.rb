@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   def index; end
 
   def show
-    @video = Video.find_by_token(params[:id])
+    @video = VideoDecorator.decorate(Video.find_by(token: params[:id]))
     @review = Review.new
   end
 

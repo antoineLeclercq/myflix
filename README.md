@@ -21,7 +21,7 @@ In the meantime, if you wish to test these features, please send me your email a
 - Payments using Stripe
 
 # Development
-- TDD using comprehensive unit, model, and integration test coverage with RSpec and Capybara
+- TDD using comprehensive unit, model, and integration test coverage with RSpec, Capybara, VCR and Selenium
 - GitHub workflow
 - Continuous development using Circle CI
 - Use Puma as web server

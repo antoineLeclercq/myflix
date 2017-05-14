@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/charges
+    body:
+      encoding: US-ASCII
+      string: amount=999&currency=usd&description=Sign+up+charge+for+joe%40example.com&source=tok_1AJ8xfJOUYpKB5iymBZDY07V
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/2.8.0
+      Authorization:
+      - Bearer sk_test_ld8RLv6UuAENQtLAOEbzQW8A
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"2.8.0","lang":"ruby","lang_version":"2.1.2 p95 (2014-05-08)","platform":"x86_64-darwin13.0","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Antoines-MacBook-Pro.local 16.5.0 Darwin Kernel Version 16.5.0: Fri Mar  3
+        16:52:33 PST 2017; root:xnu-3789.51.2~3/RELEASE_X86_64 x86_64","hostname":"Antoines-MacBook-Pro.local"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 402
+      message: Payment Required
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sat, 13 May 2017 22:43:44 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '201'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_AeRrqB955zCTDG
+      Stripe-Version:
+      - '2017-04-06'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "message": "Your card was declined.",
+            "type": "card_error",
+            "code": "card_declined",
+            "decline_code": "generic_decline",
+            "charge": "ch_1AJ8xgJOUYpKB5iy5fWQL0sx"
+          }
+        }
+    http_version: 
+  recorded_at: Sat, 13 May 2017 22:43:44 GMT
+recorded_with: VCR 2.9.3

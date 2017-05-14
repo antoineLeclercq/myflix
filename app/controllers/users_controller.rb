@@ -39,12 +39,8 @@ class UsersController < ApplicationController
         flash[:error] = charge.error_message
         render :new
       end
-
-      # rescue Stripe::CardError => e
-      #   flash[:error] = e.message
-      #   redirect_to register_path
-      # end
     else
+      flash.now[:error] = 'Invalid user information. Please check the errors below.'
       render :new
     end
   end

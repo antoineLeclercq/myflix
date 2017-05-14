@@ -21,3 +21,5 @@ config/database.yml
 /config/application.yml
 
 /dump.rdb
+
+/public/**

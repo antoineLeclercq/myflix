@@ -17,3 +17,9 @@ deployment:
       - git push git@heroku.com:myflix-staging-antoineleclercq.git $CIRCLE_SHA1:refs/heads/master
       - heroku run rake db:migrate --app myflix-staging-antoineleclercq
       - heroku maintenance:off --app myflix-staging-antoineleclercq
+dependencies:
+  pre:
+    - curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - sudo dpkg -i google-chrome.deb
+    - sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
+    - rm google-chrome.deb

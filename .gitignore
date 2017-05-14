@@ -17,4 +17,10 @@
 # Ignore the database.yml file
 config/database.yml
 
+<<<<<<< HEAD
+=======
+# Ignore application configuration
+/config/application.yml
+
+>>>>>>> feature/payments
 dump.rdb

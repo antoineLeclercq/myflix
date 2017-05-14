@@ -9,6 +9,7 @@ gem 'carrierwave-aws'
 gem 'coffee-rails'
 gem 'fabrication'
 gem 'faker'
+gem 'figaro'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'mini_magick'
@@ -17,11 +18,13 @@ gem 'rails', '4.1.1'
 gem 'sass-rails'
 gem "sentry-raven"
 gem 'sidekiq', '4.2.10'
+gem 'stripe'
 gem 'uglifier'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'foreman'
   gem 'letter_opener'
   gem 'thin'
 end
@@ -35,9 +38,12 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-email'
-  gem 'database_cleaner', '1.4.1'
+  gem 'chromedriver-helper'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 3.0'
-  gem 'vcr', '2.9.3'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development, :staging, :production do

@@ -22,13 +22,13 @@ def sign_in(a_user=nil)
     fill_in 'Email Address', with: user.email
     fill_in 'Password', with: user.password
   end
+
   click_button 'Sign In'
 end
 
 def sign_out
-  within '.dropdown' do
-    click_link 'Sign Out'
-  end
+  find('a.dropdown-toggle').click
+  click_link 'Sign Out'
 end
 
 def click_on_video_on_home_page(video)

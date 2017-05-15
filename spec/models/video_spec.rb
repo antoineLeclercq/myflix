@@ -44,17 +44,17 @@ describe Video do
     end
   end
 
-  describe '#average_rating' do
+  describe '#rating' do
     let(:video) { Fabricate(:video) }
     let(:review) { Fabricate(:review) }
 
-    it 'returns a message if there is no reviews for the video' do
-      expect(video.average_rating).to eq('No ratings')
+    it 'returns nil if there is no reviews for the video' do
+      expect(video.rating).to be_nil
     end
 
     it 'returns the rating of the review if there is one review for the video' do
       video.reviews << review
-      expect(video.average_rating).to eq(review.rating)
+      expect(video.rating).to eq(review.rating)
     end
 
     it 'returns the average for the rating of the reviews for the video' do
@@ -62,7 +62,7 @@ describe Video do
       review2 = Fabricate(:review, rating: 2)
       review3 = Fabricate(:review, rating: 2)
       video.reviews.push(review1, review2, review3)
-      expect(video.average_rating).to eq(1.7)
+      expect(video.rating).to eq(1.7)
     end
   end
 end

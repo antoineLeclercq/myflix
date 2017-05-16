@@ -20,6 +20,7 @@ gem 'sass-rails'
 gem "sentry-raven"
 gem 'sidekiq', '4.2.10'
 gem 'stripe'
+gem 'stripe_event'
 gem 'uglifier'
 
 group :development do

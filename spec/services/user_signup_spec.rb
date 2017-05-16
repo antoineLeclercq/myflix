@@ -9,16 +9,16 @@ describe UserSignup do
     let(:bob) { Fabricate.build(:user, email: 'bob@example.com',full_name: 'Bob Doe') }
 
     it 'tries to create the user' do
-      charge = double(:charge, successful?: true)
-      allow(StripeWrapper::Charge).to receive(:create) { charge }
+      customer = double(:customer, successful?: true)
+      allow(StripeWrapper::Customer).to receive(:create) { customer }
       expect(bob).to receive(:save)
 
       UserSignup.new(bob).sign_up(stripe_token, invitation_token)
     end
 
     context 'valid personal info and valid card' do
-      let(:charge) { double(:charge, successful?: true) }
-      before { expect(StripeWrapper::Charge).to receive(:create) { charge } }
+      let(:customer) { double(:customer, successful?: true) }
+      before { expect(StripeWrapper::Customer).to receive(:create) { customer } }
 
       context 'sending email' do
         it 'sends out an email' do
@@ -72,8 +72,8 @@ describe UserSignup do
 
     context 'valid personal info and declined card' do
       it 'does not create a new user record' do
-        charge = double(:charge, successful?: false, error_message: 'card was declined')
-        expect(StripeWrapper::Charge).to receive(:create) { charge }
+        customer = double(:customer, successful?: false, error_message: 'card was declined')
+        expect(StripeWrapper::Customer).to receive(:create) { customer }
 
         UserSignup.new(bob).sign_up(stripe_token, invitation_token)
 

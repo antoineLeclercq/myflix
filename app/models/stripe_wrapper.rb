@@ -15,6 +15,7 @@ module StripeWrapper
           description: options[:description],
           source: options[:source]
         )
+
         new(response: response)
       rescue Stripe::CardError => e
         new(error_message: e.message)
@@ -51,6 +52,10 @@ module StripeWrapper
 
     def successful?
       response.present?
+    end
+
+    def customer_token
+      response.id
     end
   end
 end

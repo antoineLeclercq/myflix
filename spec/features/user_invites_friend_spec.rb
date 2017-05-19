@@ -34,7 +34,7 @@ feature 'User invites a friend' do
     fill_in 'Password', with: 'password'
     fill_in 'Full Name', with: 'Joe Joe'
 
-    stripe_iframe = find('iframe[name=__privateStripeFrame3]')
+    stripe_iframe = find('#card-element iframe')
     within_frame stripe_iframe do
       fill_in 'cardnumber', with: '4242424242424242'
       fill_in 'exp-date', with: '07/18'

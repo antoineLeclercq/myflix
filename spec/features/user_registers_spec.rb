@@ -63,7 +63,7 @@ feature 'User registers and pays for subscription', vcr: true, js: true do
   end
 
   def fill_in_valid_card
-    stripe_iframe = find('iframe[name=__privateStripeFrame3]')
+    stripe_iframe = find('#card-element iframe')
     within_frame stripe_iframe do
       fill_in 'cardnumber', with: '4242424242424242'
       fill_in 'exp-date', with: '07/18'
@@ -73,7 +73,7 @@ feature 'User registers and pays for subscription', vcr: true, js: true do
   end
 
   def fill_in_declined_card
-    stripe_iframe = find('iframe[name=__privateStripeFrame3]')
+    stripe_iframe = find('#card-element iframe')
     within_frame stripe_iframe do
       fill_in 'cardnumber', with: '4000000000000002'
       fill_in 'exp-date', with: '07/18'
@@ -83,7 +83,7 @@ feature 'User registers and pays for subscription', vcr: true, js: true do
   end
 
   def fill_in_invalid_card
-    stripe_iframe = find('iframe[name=__privateStripeFrame3]')
+    stripe_iframe = find('#card-element iframe')
     within_frame stripe_iframe do
       fill_in 'cardnumber', with: '1234'
       fill_in 'exp-date', with: '07/18'

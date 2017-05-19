@@ -1,6 +1,3 @@
-small_cover_uploader = SmallCoverUploader.new
-large_cover_uploader = LargeCoverUploader.new
-
 Video.create(
   title: 'Friends',
   description: 'Friends is an American situation comedy about a group of friends living in the New York City borough of Manhattan. It was created by David Crane and Marta Kauffman, which premiered on NBC on September 22, 1994. The series was produced by Bright/Kauffman/Crane Productions, in association with Warner Bros. Television.',

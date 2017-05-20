@@ -65,4 +65,44 @@ describe Video do
       expect(video.rating).to eq(1.7)
     end
   end
+
+  describe '.search', :elasticsearch do
+    let(:refresh_index) do
+      Video.import
+      Video.__elasticsearch__.refresh_index!
+    end
+
+    context 'with title' do
+      it "returns no results when there's no match" do
+        Fabricate(:video, title: 'Inception')
+        refresh_index
+
+        expect(Video.search('whatever').records.to_a).to eq([])
+      end
+
+      it "returns an empty array when there's no search term" do
+        Fabricate(:video, title: 'Inception')
+        Fabricate(:video, title: 'Friends')
+        refresh_index
+
+        expect(Video.search('').records.to_a).to eq([])
+      end
+
+      it 'returns an array of 1 video for title case insensitve match' do
+        Fabricate(:video, title: 'Friends')
+        inception = Fabricate(:video, title: 'Inception')
+        refresh_index
+
+        expect(Video.search('inception').records.to_a).to eq([inception])
+      end
+
+      it 'returns an array of many videos for title match' do
+        star_trek = Fabricate(:video, title: "Star Trek")
+        star_wars = Fabricate(:video, title: "Star Wars")
+        refresh_index
+
+        expect(Video.search('star').records.to_a).to match_array([star_trek, star_wars])
+      end
+    end
+  end
 end

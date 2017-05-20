@@ -1,5 +1,9 @@
 class Video < ActiveRecord::Base
   include Tokenable
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  index_name "myflix_#{Rails.env}"
 
   belongs_to :category
   has_many :reviews, -> { order(created_at: :desc) }
@@ -18,5 +22,9 @@ class Video < ActiveRecord::Base
   def rating
     avg = reviews.average(:rating)
     avg.round(1) if avg
+  end
+
+  def as_indexed_json(options={})
+    as_json(only: [:title])
   end
 end

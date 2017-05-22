@@ -1,16 +1,17 @@
 %section#top-header.navbar.navbar-default
   .container-fluid
     .navbar-header
-      = link_to "MyFLiX", home_path, class: 'navbar-brand'
+      = link_to 'MyFLiX', home_path, class: 'navbar-brand'
     - if logged_in?
       %ul.nav.navbar-nav
-        %li= link_to "Videos", home_path
-        %li= link_to "My Queue", my_queue_path
-        %li= link_to "People", people_path
+        %li= link_to 'Videos', home_path
+        %li= link_to 'My Queue', my_queue_path
+        %li= link_to 'People', people_path
       = form_tag search_videos_path, method: 'get', class: 'navbar-form navbar-left' do
         .form-group
           = text_field_tag :search_term, '', class: 'form-control', placeholder: 'Search for videos here'
         = button_tag 'Search', class: 'btn btn-default'
+        = link_to 'Advanced Search', advanced_search_videos_path, class: 'advanced-search'
       #user_links.pull-right
         %ul.nav.navbar-nav
           %li.dropdown

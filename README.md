@@ -2,7 +2,7 @@ Use the following logins on the production App:
 - Email: test@myflix.com
 - Password: password
 
-Features involving emails will not work for now because the production app is using a Mailgun Sandbox which requires to add authorized users. In the future a custom domain will be added and verified by Mailgun which will allow for these features to work. 
+Features involving emails will not work for now because the production app is using a Mailgun Sandbox which requires to add authorized users. In the future a custom domain will be added and verified by Mailgun which will allow for these features to work.
 In the meantime, if you wish to test these features, please send me your email at: antoine.leclercq.49@gmail.com and I will add you to the list of authorized users.
 
 # Features
@@ -18,13 +18,15 @@ In the meantime, if you wish to test these features, please send me your email a
 - Users can send emails inviting friends to join
 - Friends invited by a current user will automatically follow the current user if they sign up
 - Admins can add videos and video images (stored with Amazon S3)
-- Payments using Stripe
+- Payments and subscription using Stripe (lock user's account in case of failed payment)
+- User can search videos
+- User can perform an advanced search on Videos which uses ELasticsearch in the background
 
 # Development
 - TDD using comprehensive unit, model, and integration test coverage with RSpec, Capybara, VCR and Selenium
 - GitHub workflow
 - Continuous development using Circle CI
 - Use Puma as web server
-- Utilize Redis and Sidekiq for background jobs such as email sending
+- Use Redis and Sidekiq for background jobs such as email sending
 - Use Raven for monitoring staging and production server errors
 - Heroku deployment with staging and production servers

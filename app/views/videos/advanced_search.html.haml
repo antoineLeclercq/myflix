@@ -10,21 +10,16 @@
         .col-sm-6
           .checkbox
             %label
-              %input(type="checkbox") Include Reviews
+              = check_box_tag :reviews, 'yes', params[:reviews] == 'yes'
+              Include Reviews
       .form-group
         .row.average_rating_label Average Rating
-        %label.col-sm-1.control-label(for="rating_from") From:
+        = label_tag :rating_from, 'From:', class: 'col-sm-1 control-label'
         .col-sm-2
-          %select.form-control(id="rating_from")
-            %option -
-            - (10..50).map { |num| num / 10.0 }.each do |number|
-              %option{ value: number }= number
-        %label.col-sm-1.control-label(for="rating_to") To:
+          = select_tag :rating_from, options_for_select((10..50).map { |num| num / 10.0 }, params[:rating_from]), prompt: '-', class: 'form-control'
+        = label_tag :rating_to, 'To:', class: 'col-sm-1 control-label'
         .col-sm-2
-          %select.form-control(id="rating_to")
-            %option -
-            - (10..50).map { |num| num / 10.0 }.each do |number|
-              %option{ value: number }= number
+          = select_tag :rating_to, options_for_select((10..50).map { |num| num / 10.0 }, params[:rating_to]), prompt: '-', class: 'form-control'
       .form-group
         .col-sm-6
           = button_tag type: 'submit', class: 'btn btn-primary' do

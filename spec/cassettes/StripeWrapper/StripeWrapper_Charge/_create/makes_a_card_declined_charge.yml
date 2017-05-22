@@ -29,7 +29,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sat, 13 May 2017 06:12:52 GMT
+      - Mon, 22 May 2017 03:00:22 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -47,7 +47,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_AeBsdGEEhvs2Or
+      - req_AhVonpw0ZjQgrB
       Stripe-Version:
       - '2017-04-06'
       Strict-Transport-Security:
@@ -56,10 +56,10 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_1AItUmJOUYpKB5iyGJUBuJb0",
+          "id": "tok_1AM6mQJOUYpKB5iyJHwYQVcw",
           "object": "token",
           "card": {
-            "id": "card_1AItUlJOUYpKB5iyukTJgW7k",
+            "id": "card_1AM6mQJOUYpKB5iydaaAkFQC",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -83,19 +83,19 @@ http_interactions:
             "tokenization_method": null
           },
           "client_ip": "72.226.37.113",
-          "created": 1494655972,
+          "created": 1495422022,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Sat, 13 May 2017 06:12:52 GMT
+  recorded_at: Mon, 22 May 2017 03:00:22 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: US-ASCII
-      string: amount=999&currency=usd&description=Sign+up+charge&source=tok_1AItUmJOUYpKB5iyGJUBuJb0
+      string: amount=999&currency=usd&description=Sign+up+charge&source=tok_1AM6mQJOUYpKB5iyJHwYQVcw
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/2.8.0
@@ -119,7 +119,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sat, 13 May 2017 06:12:52 GMT
+      - Mon, 22 May 2017 03:00:23 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -137,7 +137,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_AeBsBfIckzj5sX
+      - req_AhVoQCr4rctJmR
       Stripe-Version:
       - '2017-04-06'
     body:
@@ -149,9 +149,9 @@ http_interactions:
             "type": "card_error",
             "code": "card_declined",
             "decline_code": "generic_decline",
-            "charge": "ch_1AItUmJOUYpKB5iyd2iQbNyt"
+            "charge": "ch_1AM6mRJOUYpKB5iysQO5mjRO"
           }
         }
     http_version: 
-  recorded_at: Sat, 13 May 2017 06:12:52 GMT
+  recorded_at: Mon, 22 May 2017 03:00:23 GMT
 recorded_with: VCR 2.9.3

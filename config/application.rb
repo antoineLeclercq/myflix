@@ -11,6 +11,7 @@ module Myflix
     config.autoload_paths << Rails.root.join('lib')
     config.active_support.escape_html_entities_in_json = true
 
+    config.serve_static_assets = true
     config.assets.enabled = true
     config.generators do |g|
       g.orm :active_record

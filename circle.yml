@@ -1,8 +1,6 @@
 machine:
   ruby:
     version: 2.1.2
-  services:
-    - elasticsearch
 deployment:
   production:
     branch: master
@@ -25,3 +23,9 @@ dependencies:
     - sudo dpkg -i google-chrome.deb
     - sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
     - rm google-chrome.deb
+  post:
+    - wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.3/elasticsearch-2.4.3.tar.gz
+    - tar -xvf elasticsearch-2.4.3.tar.gz
+    - elasticsearch-2.4.3/bin/elasticsearch: {background: true}
+    # Make sure that Elasticsearch is up before running tests:
+    - sleep 10 && wget --waitretry=5 --retry-connrefused -v http://127.0.0.1:9200/

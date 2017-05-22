@@ -27,16 +27,31 @@ class Video < ActiveRecord::Base
   def self.search(query, options={})
     search_definition = {
       query: {
-        multi_match: {
-          query: query,
-          fields: ['title^100', 'description^50'],
-          operator: 'and'
+        bool: {
+          must: {
+            multi_match: {
+              query: query,
+              fields: ['title^100', 'description^50'],
+              operator: 'and'
+            }
+          }
         }
       }
     }
 
     if query.present? && options[:reviews]
-      search_definition[:query][:multi_match][:fields] << 'reviews.body'
+      search_definition[:query][:bool][:must][:multi_match][:fields] << 'reviews.body'
+    end
+
+    if options[:rating_from].present? || options[:rating_to].present?
+      search_definition[:query][:bool][:filter] = {
+        range: {
+          rating: {
+            gte: (options[:rating_from] if options[:rating_from].present?),
+            lte: (options[:rating_to] if options[:rating_to].present?)
+          }
+        }
+      }
     end
 
     __elasticsearch__.search(search_definition)
@@ -44,6 +59,7 @@ class Video < ActiveRecord::Base
 
   def as_indexed_json(options={})
     as_json(
+      methods: [:rating],
       only: [:title, :description],
       include: {
         reviews: { only: [:body] }

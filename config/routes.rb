@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Myflix::Application.routes.draw do
   root 'pages#front'
 
@@ -43,4 +45,5 @@ Myflix::Application.routes.draw do
   end
 
   mount StripeEvent::Engine, at: '/stripe_events'
+  mount Sidekiq::Web => '/sidekiq'
 end

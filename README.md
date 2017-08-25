@@ -6,7 +6,6 @@ Features involving emails will not work for now because the production app is us
 In the meantime, if you wish to test these features, please send me your email at: antoine.leclercq.49@gmail.com and I will add you to the list of authorized users.
 
 # Features
-## Implemented:
 - User authentication using bcrypt
 - User can browse videos by category
 - Users can review videos (rating + comment)

@@ -1,4 +1,4 @@
-Use the following logins on the production App:
+Use the following email/password on the production App:
 - Email: test@myflix.com
 - Password: password
 

@@ -18,7 +18,7 @@ Use the following email/password on the production App:
 - User can search videos
 - User can perform an advanced search on Videos which uses ELasticsearch in the background
 
-# Development
+# Process used to build this application
 - TDD using comprehensive unit, model, and integration test coverage with RSpec, Capybara, VCR and Selenium
 - GitHub workflow
 - Continuous development using Circle CI
